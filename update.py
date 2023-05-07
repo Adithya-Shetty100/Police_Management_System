@@ -1,30 +1,49 @@
-import pandas as pd
+# Importing pakages
+#pip3 install mysql-connector-python
+
 import streamlit as st
+import mysql.connector
+import pandas as pd
 from datetime import time, datetime
 
-from database import get_officer, view_data_officer, edit_officer_data
+from create import create
+from database import create_tables, stored_func, trigger
+from delete import delete
+from read import read
+from update import update
+
+# mydb = mysql.connector.connect(
+#     host="localhost",
+#     user="root",
+#     password="password",
+# )
+# c = mydb.cursor()
+# c.execute("CREATE DATABASE police")
 
 
-def update():
-    result = view_data_officer()
-    df = pd.DataFrame(result,columns=['OfficerId' , 'FirstName' , 'LastName', 'Ranking', 'Department', 'Phone', 'Address', 'BloodGrp'])
-    with st.expander("Officer List"):
-        st.dataframe(df)
+st.title("Police Management System Dashboard")
+menu = ["Add", "View", "Edit", "Remove"]
+choice = st.sidebar.selectbox("Menu", menu)
 
-    list_of_officers = [i[0] for i in view_data_officer()]
-    selected_case = st.selectbox("Officer to Edit", list_of_officers)
-    selected_result = get_officer(selected_case)
-    if selected_result:
-        OfficerId = selected_result[0][0]
-        Ranking = selected_result[0][3]
-        Department = selected_result[0][4]
-        Phone = selected_result[0][5]
-        Address = selected_result[0][6]
+#trigger()
+# stored_func()
 
-    new_ranking = st.text_input("Ranking:", Ranking)
-    new_department = st.text_input("Department:", Department)
-    new_phone = st.text_input("Phone:", Phone)
-    new_address = st.text_input("Address:", Address)
-    if st.button("Update Officer"):
-        edit_officer_data(new_ranking, new_department, new_phone, new_address, OfficerId)
-        st.success("Officer's Detail has been updated ")
+# create_tables()
+if choice == "Add":
+    st.subheader("Add data")
+    create()
+
+elif choice == "View":
+    st.subheader("View data")
+    read()
+
+elif choice == "Edit":
+    st.subheader("Update")
+    update()
+
+elif choice == "Remove":
+    st.subheader("Delete")
+    delete()
+
+else:
+    st.subheader("About tasks")
