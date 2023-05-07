@@ -1,5 +1,6 @@
 import pandas as pd
 import streamlit as st
+from datetime import time, datetime
 
 from database import get_officer, view_data_officer, edit_officer_data
 
@@ -24,6 +25,6 @@ def update():
     new_department = st.text_input("Department:", Department)
     new_phone = st.text_input("Phone:", Phone)
     new_address = st.text_input("Address:", Address)
-    if st.button("Update Dealer"):
+    if st.button("Update Officer"):
         edit_officer_data(new_ranking, new_department, new_phone, new_address, OfficerId)
         st.success("Officer's Detail has been updated ")
