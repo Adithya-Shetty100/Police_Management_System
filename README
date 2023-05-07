@@ -1,1 +1,10 @@
-My Project
+PROBLEM STATEMENT
+
+
+This project deals with creation of a database of the police management system.
+It has information about-Officers, cases, complaints, complainants, arrests and criminals.
+Tables have been formed on each and the ER diagram establishes the relationship between the entities and attributes.
+The project also demonstrates the performance of certain operations like create, select, delete, update, read, trigger, functions and many more.
+We have used github, streamlit, python and xampp to execute the same.
+There are screenshots of the table after performing each operation along with the sql query command for the same.
+
