@@ -1,12 +1,13 @@
 # Importing pakages
 #pip3 install mysql-connector-python
+
 import streamlit as st
 import mysql.connector
 import pandas as pd
-import datetime
+from datetime import time, datetime
 
 from create import create
-from database import create_tables
+from database import create_tables, stored_func, trigger
 from delete import delete
 from read import read
 from update import update
@@ -17,14 +18,17 @@ from update import update
 #     password="password",
 # )
 # c = mydb.cursor()
-# c.execute("CREATE DATABASE Police_Management_System1")
+# c.execute("CREATE DATABASE police")
+
 
 st.title("Police Management System Dashboard")
 menu = ["Add", "View", "Edit", "Remove"]
 choice = st.sidebar.selectbox("Menu", menu)
 
+#trigger()
+# stored_func()
 
-create_tables()
+# create_tables()
 if choice == "Add":
     st.subheader("Add data")
     create()
